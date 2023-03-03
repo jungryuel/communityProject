@@ -1,0 +1,13 @@
+package repository;
+
+import model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByNicknameAndStatus(String nickname, Integer status);
+    Optional<User> findByEmailAndStatus(String email, Integer Status);
+    Optional<User> findByUserIdAndStatus(Long userId, Integer Status);
+}
