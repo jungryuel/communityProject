@@ -1,9 +1,8 @@
 package controller;
 
-import dto.JoinDto;
 import dto.LoginDto;
 import lombok.RequiredArgsConstructor;
-import model.User;
+import domain.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,12 +18,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/member/join")
-    public ResponseEntity<String> join(JoinDto joinDto) {
-        User user = new User();
-        user.setEmail(joinDto.getEmail());
-        user.setPassword(joinDto.getPassword());
-        user.setNickname(joinDto.getNickname());
-
+    public ResponseEntity<String> join(User user) {
         userService.joinUser(user);
         return new ResponseEntity<>("회원가입 완료", HttpStatus.OK);
     }
